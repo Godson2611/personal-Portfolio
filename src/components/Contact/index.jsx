@@ -131,7 +131,17 @@ const ContactButton = styled.input`
   color: ${({ theme }) => theme.text_primary};
   font-size: 18px;
   font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+  }
 `;
+
 
 const Contact = () => {
   //hooks
