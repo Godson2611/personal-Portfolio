@@ -88,7 +88,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 setIsOpen(!isOpen);
               }}
             >
-              Experience
+              certificate
             </MobileLink>
             <MobileLink
               href='#projects'
