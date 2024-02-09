@@ -128,7 +128,7 @@ const ContactButton = styled.input`
   margin-top: 2px;
   border-radius: 12px;
   border: none;
-  color: ${({ theme }) => theme.text_primary};
+  color: white;
   font-size: 18px;
   font-weight: 600;
   position: relative;

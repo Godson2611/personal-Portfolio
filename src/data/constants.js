@@ -2,7 +2,7 @@
 
 export const Bio = {
   name: "Godson S",
-  roles: ["MERN Stack Developer", "Programmer"],
+  roles: ["MERN Stack Developer", "Programmer", "Frontend Developer", "Backend Developer", "Database Manager"],
   description:
     "BTech IT graduate specializing in MERN stack with a track record of delivering high-quality projects on time. Skilled in MySQL, RESTful APIs, testing, debugging, and version control systems. Experienced in deploying on AWS, Netlify, and other similar platforms. Dedicated to ongoing professional development and staying current with the latest advancements in the tech industry.",
   github: "https://github.com/Godson2611",

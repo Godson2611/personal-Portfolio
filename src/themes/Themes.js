@@ -1,13 +1,13 @@
 /** @format */
 
 export const darkTheme = {
-  bg: "rgb(31 32 42)",
+  bg: "#000619",
   bgLight: "#3E4252",
   primary: "#fbd900",
   text_primary: "#F5F5F5",
   text_secondary: "#AFAFB2",
   card: "#2D2F3A",
-  card_light: "#313341",
+  card_light: "#000011",
   button: "#F49C22",
   white: "#FFFFFF",
   black: "#000000",

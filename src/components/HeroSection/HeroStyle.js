@@ -188,32 +188,36 @@ export const SubTitle = styled.div`
 `;
 
 export const ResumeButton = styled.a`
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    text-decoration: none;
-    width: 95%;
-    max-width: 300px;
-    text-align: center;
-    padding: 16px 0;
-    color: ${({ theme }) => theme.white};
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 600;
-    transition: all 0.2s ease-in-out !important;
-    background: linear-gradient(135deg, ${({ theme }) => theme.primary} 0%, ${({ theme }) => theme.button} 100%);
-    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
-    
-    &:hover {
-        transform: scale(1.05);
-        transition: all 0.4s ease-in-out;
-        box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
-    }    
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+  width: 95%;
+  max-width: 300px;
+  text-align: center;
+  padding: 16px 0;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out !important;
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.primary} 0%,
+    ${({ theme }) => theme.button} 100%
+  );
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
 
-    @media (max-width: 640px) {
-        padding: 12px 0;
-        font-size: 18px;
-    } 
+  &:hover {
+    transform: scale(1.05);
+    transition: all 0.4s ease-in-out;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 640px) {
+    padding: 12px 0;
+    font-size: 18px;
+  }
 `;
 
