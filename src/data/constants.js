@@ -2,12 +2,18 @@
 
 export const Bio = {
   name: "Godson S",
-  roles: ["MERN Stack Developer", "Programmer", "Frontend Developer", "Backend Developer", "Database Manager"],
+  roles: [
+    "MERN Stack Developer",
+    "Programmer",
+    "Frontend Developer",
+    "Backend Developer",
+    "Database Manager",
+  ],
   description:
     "BTech IT graduate specializing in MERN stack with a track record of delivering high-quality projects on time. Skilled in MySQL, RESTful APIs, testing, debugging, and version control systems. Experienced in deploying on AWS, Netlify, and other similar platforms. Dedicated to ongoing professional development and staying current with the latest advancements in the tech industry.",
   github: "https://github.com/Godson2611",
   resume:
-    "https://drive.google.com/file/d/1nnULHcg8yUhiZ_1Pnbh1hMMy0QHxPCVD/view?usp=sharing",
+    "https://drive.google.com/file/d/1XOmx5--Zbnq1fpYxc7im4HtGBGEAek8a/view?usp=sharing",
   linkedin: "https://www.linkedin.com/in/godson-s/",
 };
 
@@ -225,7 +231,7 @@ export const experiences = [
       "AWS (S3, Lambda, DynamoDB)",
       "Software Development Best Practices",
     ],
-    doc: "https://drive.google.com/file/d/1XOmx5--Zbnq1fpYxc7im4HtGBGEAek8a/view?usp=sharing",
+    doc: "https://drive.google.com/file/d/1IN0uoXpm6aZvcoVZWjsI2KLj1ob3Tzhh/view",
   },
 ];
 
