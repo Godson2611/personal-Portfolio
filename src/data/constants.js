@@ -225,7 +225,7 @@ export const experiences = [
       "AWS (S3, Lambda, DynamoDB)",
       "Software Development Best Practices",
     ],
-    doc: "https://drive.google.com/file/d/1IN0uoXpm6aZvcoVZWjsI2KLj1ob3Tzhh/view?usp=sharing",
+    doc: "https://drive.google.com/file/d/1XOmx5--Zbnq1fpYxc7im4HtGBGEAek8a/view?usp=sharing",
   },
 ];
 
