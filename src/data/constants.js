@@ -250,36 +250,56 @@ export const education = [
 export const projects = [
   {
     id: 0,
+    title: "Chat App MERN",
+    date: "feb 2024 - Present",
+    description:
+      "Chat App MERN is a real-time messaging web application. Users can share messages instantly with each other.",
+    image: "https://imgur.com/574Ikvd.png",
+    tags: [
+      "ReactJS",
+      "MongoDB",
+      "ExpressJS",
+      "nodeJS",
+      "Auth",
+      "JWT",
+      "socket.io",
+    ],
+    category: "web app",
+    github: "https://github.com/Godson2611/Chat-App-MERN",
+    webapp: "https://chats-app-mern.netlify.app",
+  },
+  {
+    id: 1,
+    title: "Flight Ticket Booking App",
+    date: "Dec 2023 - Dec 2023",
+    description:
+      "Flight Ticket Booking App is a web application developed for booking flight tickets. The app has both user and admin functionalities.",
+    image: "https://imgur.com/pkXpTdh.png",
+    tags: ["ReactJS", "MongoDB", "ExpressJS", "nodeJS"],
+    category: "web app",
+    github: "https://github.com/Godson2611/Flight-Ticket-Booking-App",
+    webapp: "https://flight-ticket-bookings-app.netlify.app/home",
+  },
+  {
+    id: 2,
     title: "Meal Finder Website",
     date: "Sep 2023 - Sep 2023",
     description:
       "The Meal Finder website is a project developed during a hackathon. It's designed to help users easily find and learn how to cook various meals. Whether you're a beginner or an experienced chef, this website provides a wide range of recipes and cooking instructions.",
-    image:
-      "https://drive.google.com/file/d/1yWsLMLgRgKggBC4UuS-fvjXtKYw3k6vo/view?usp=sharing",
-    tags: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "BootStrap"
-    ],
+    image: "https://imgur.com/zaaqvLl.png",
+    tags: ["HTML", "CSS", "JavaScript", "BootStrap"],
     category: "web app",
     github: "https://github.com/Godson2611/Meal-Finder",
     webapp: "https://meal-finder-landing.netlify.app/",
   },
   {
-    id: 1,
+    id: 3,
     title: "QR-code-generator",
-    date: "Oct 2022 - Present",
+    date: "Oct 2023 - Oct 2023",
     description:
       "This is a hackathon task: a website for generating customizable QR codes",
-    image:
-      "https://drive.google.com/file/d/1yR968h3kh4oX_vUUu3ZjhdtE0F9Y7g1S/view?usp=sharing",
-    tags: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "BootStrap",
-    ],
+    image: "https://imgur.com/SOUD5YU.png",
+    tags: ["HTML", "CSS", "JavaScript", "BootStrap"],
     category: "web app",
     github: "https://github.com/Godson2611/QR-code-generator",
     webapp: "https://qr-codes-generator-site.netlify.app/",
