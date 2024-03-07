@@ -150,6 +150,7 @@ export const experiences = [
       "Port numbers and HTTP parts",
       "Fundamental understanding of HTTP",
     ],
+    docImg: "https://imgur.com/zbqwxcT.png",
     doc: "https://drive.google.com/file/d/1p7R5sOLiEiuDuruDUDwjVEbTVQrTc6h6/view?usp=sharing",
   },
   {
@@ -164,6 +165,7 @@ export const experiences = [
       "Advanced CSS Concepts",
       "Responsive Web Design",
     ],
+    docImg: "https://imgur.com/MoULkzR.png",
     doc: "https://drive.google.com/file/d/1T47u8PPd_K9nPxUIfXAoEA_1QdMZr6_X/view?usp=sharing",
   },
   {
@@ -178,6 +180,7 @@ export const experiences = [
       "Practical JavaScript Applications",
       "Web Application Development",
     ],
+    docImg: "https://imgur.com/1Ob19q1.png",
     doc: "https://drive.google.com/file/d/1RK8PYrOiM0yGQSiGL928vnuyG1OGsexZ/view?usp=sharing",
   },
   {
@@ -192,6 +195,7 @@ export const experiences = [
       "Branching and Merging",
       "Collaborative Development Workflows",
     ],
+    docImg: "https://imgur.com/BHp0MOH.png",
     doc: "https://drive.google.com/file/d/1WlaybiXEgCQc7N7o7DdVGE0OdPByPTHn/view?usp=sharing",
   },
   {
@@ -206,6 +210,7 @@ export const experiences = [
       "GitHub Actions",
       "Automated Software Delivery",
     ],
+    docImg: "https://imgur.com/v4LlHwu.png",
     doc: "https://drive.google.com/file/d/1wkeW0XSB-oJoVVhhbvOxnWsjekbma8GZ/view?usp=sharing",
   },
   {
@@ -231,6 +236,7 @@ export const experiences = [
       "AWS (S3, Lambda, DynamoDB)",
       "Software Development Best Practices",
     ],
+    docImg: "https://imgur.com/CNLnC7Y.png",
     doc: "https://drive.google.com/file/d/1IN0uoXpm6aZvcoVZWjsI2KLj1ob3Tzhh/view",
   },
 ];
@@ -310,7 +316,7 @@ export const projects = [
     date: "Nov 2023",
     description: "This is a bookstore app for improving my skills.",
     image: "https://imgur.com/00XsKEw.png",
-    tags: ["MERN"],
+    tags: ["reactJS", "nodeJS", "mongoDB", "expressJS"],
     category: "web app",
     github: "https://github.com/Godson2611/Books-Store",
     webapp: "https://cerulean-sunburst-aa0994.netlify.app/",

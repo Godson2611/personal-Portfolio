@@ -147,37 +147,41 @@ const Skill = styled.div`
 
 const ExperienceCard = ({ experience }) => {
     return (
-        <Card>
-            <Top>
-                <Image src={experience.img} />
-                <Body>
-                    <Role>{experience.role}</Role>
-                    <Company>{experience.company}</Company>
-                    <Date>{experience.date}</Date>
-                </Body>
-            </Top>
-            <Description>
-                {experience?.desc && <Span>{experience?.desc}</Span>}
-                {experience?.skills && (
-                    <>
-                        <br />
-                        <Skills>
-                            <b>Skills:</b>
-                            <ItemWrapper>
-                                {experience?.skills?.map((skill, index) => (
-                                    <Skill key={index}>• {skill}</Skill>
-                                ))}
-                            </ItemWrapper>
-                        </Skills>
-                    </>
-                )}
-            </Description>
-            {experience.doc && (
-                <NavLink to={experience.doc} target="_blank" style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <Document src={experience.doc} />
-                </NavLink>
-            )}
-        </Card>
+      <Card>
+        <Top>
+          <Image src={experience.img} />
+          <Body>
+            <Role>{experience.role}</Role>
+            <Company>{experience.company}</Company>
+            <Date>{experience.date}</Date>
+          </Body>
+        </Top>
+        <Description>
+          {experience?.desc && <Span>{experience?.desc}</Span>}
+          {experience?.skills && (
+            <>
+              <br />
+              <Skills>
+                <b>Skills:</b>
+                <ItemWrapper>
+                  {experience?.skills?.map((skill, index) => (
+                    <Skill key={index}>• {skill}</Skill>
+                  ))}
+                </ItemWrapper>
+              </Skills>
+            </>
+          )}
+        </Description>
+        {experience.doc && (
+          <NavLink
+            to={experience.doc}
+            target='_blank'
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Document src={experience.docImg} />
+          </NavLink>
+        )}
+      </Card>
     );
 };
 
