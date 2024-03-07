@@ -304,4 +304,15 @@ export const projects = [
     github: "https://github.com/Godson2611/QR-code-generator",
     webapp: "https://qr-codes-generator-site.netlify.app/",
   },
+  {
+    id: 3,
+    title: "Book-store-app",
+    date: "Nov 2023",
+    description: "This is a bookstore app for improving my skills.",
+    image: "https://imgur.com/00XsKEw.png",
+    tags: ["MERN"],
+    category: "web app",
+    github: "https://github.com/Godson2611/Books-Store",
+    webapp: "https://cerulean-sunburst-aa0994.netlify.app/",
+  },
 ];
