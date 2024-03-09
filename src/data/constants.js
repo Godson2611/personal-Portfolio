@@ -10,10 +10,10 @@ export const Bio = {
     "Database Manager",
   ],
   description:
-    "BTech IT graduate specializing in MERN stack with a track record of delivering high-quality projects on time. Skilled in MySQL, RESTful APIs, testing, debugging, and version control systems. Experienced in deploying on AWS, Netlify, and other similar platforms. Dedicated to ongoing professional development and staying current with the latest advancements in the tech industry.",
+    "BTech IT graduate specializing in MERN stack with a strong track record of delivering high-quality projects on time. Skilled in database management, RESTful APIs, testing, debugging, version control systems, and deploying applications on AWS and Netlify. Committed to ongoing professional development and staying updated with the latest tech advancements.",
   github: "https://github.com/Godson2611",
   resume:
-    "https://drive.google.com/file/d/1XOmx5--Zbnq1fpYxc7im4HtGBGEAek8a/view?usp=sharing",
+    "https://www.canva.com/design/DAF6NJFDaY4/OBS_tiWj3DmpGrKCGYmPtg/view?utm_content=DAF6NJFDaY4&utm_campaign=designshare&utm_medium=link&utm_source=editor",
   linkedin: "https://www.linkedin.com/in/godson-s/",
 };
 
