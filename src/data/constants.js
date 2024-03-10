@@ -272,7 +272,7 @@ export const projects = [
     ],
     category: "web app",
     github: "https://github.com/Godson2611/Chat-App-MERN",
-    webapp: "https://chats-app-mern.netlify.app",
+    webapp: "https://kaleidoscopic-capybara-d7f34d.netlify.app/",
   },
   {
     id: 1,
