@@ -16,6 +16,9 @@ import {
 } from './HeroStyle'
 
 const HeroSection = ({ bio }) => {
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  const baseUrl = apiUrl.replace('/api', '')
+
   return (
     <div id="about">
       <HeroContainer>
@@ -49,9 +52,7 @@ const HeroSection = ({ bio }) => {
           <HeroRightContainer id="Right">
             <Img
               src={
-                bio?.profileImage
-                  ? `http://localhost:5000${bio.profileImage}`
-                  : HeroImg
+                bio?.profileImage ? `${baseUrl}${bio.profileImage}` : HeroImg
               }
               alt="profile"
               onError={(e) => {
