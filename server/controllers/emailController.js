@@ -1,31 +1,7 @@
-import nodemailer from 'nodemailer'
-
-const getTransporter = () => {
-  const emailUser = process.env.EMAIL_USER
-  const emailPassword = process.env.EMAIL_PASSWORD
-
-  if (!emailUser || !emailPassword) {
-    throw new Error(
-      `Email credentials not configured. EMAIL_USER: ${emailUser ? 'set' : 'not set'}, EMAIL_PASSWORD: ${emailPassword ? 'set' : 'not set'}`,
-    )
-  }
-
-  // Use Brevo SMTP relay (works on Render free plan)
-  return nodemailer.createTransport({
-    host: 'smtp-relay.brevo.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: emailUser,
-      pass: emailPassword,
-    },
-  })
-}
+import axios from 'axios'
 
 export const sendEmail = async (req, res) => {
   try {
-    const transporter = getTransporter()
-
     const { email, name, subject, message } = req.body
 
     if (!email || !name || !subject || !message) {
@@ -44,51 +20,67 @@ export const sendEmail = async (req, res) => {
       })
     }
 
-    const mailOptionsToOwner = {
-      from: process.env.EMAIL_FROM,
-      to: process.env.RECEIVER_EMAIL,
+    // Get Brevo API credentials from environment variables
+    const brevoApiKey = process.env.BREVO_API_KEY
+
+    if (!brevoApiKey) {
+      throw new Error('BREVO_API_KEY is not configured')
+    }
+
+    // Email to owner (you)
+    const emailDataToOwner = {
+      sender: {
+        name: `${name} (via Portfolio)`,
+        email: process.env.EMAIL_FROM || 'noreply@yourportfolio.com',
+      },
+      to: [
+        {
+          email: process.env.RECEIVER_EMAIL,
+          name: 'Godson S',
+        },
+      ],
       subject: `New Contact Form Submission: ${subject}`,
-      html: `
-                <h2>New Message from Your Portfolio</h2>
-                <p><strong>From:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Subject:</strong> ${subject}</p>
-                <hr />
-                <p><strong>Message:</strong></p>
-                <p>${message.replace(/\n/g, '<br>')}</p>
-            `,
+      htmlContent: `
+        <h2>New Message from Your Portfolio</h2>
+        <p><strong>From:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <hr />
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+      `,
+      replyTo: {
+        email: email,
+        name: name,
+      },
     }
 
-    const mailOptionsToSender = {
-      from: process.env.EMAIL_FROM,
-      to: email,
-      subject: `Re: ${subject} - Thank you for contacting us`,
-      html: `
-                <h2>Thank You for Contacting Us!</h2>
-                <p>Hi ${name},</p>
-                <p>We have received your message and will get back to you as soon as possible.</p>
-                <hr />
-                <p><strong>Your Message:</strong></p>
-                <p><strong>Subject:</strong> ${subject}</p>
-                <p>${message.replace(/\n/g, '<br>')}</p>
-                <hr />
-                <p>Best regards,<br>Godson S</p>
-            `,
-    }
+    // Send email using Brevo API
+    const response = await axios.post(
+      'https://api.brevo.com/v3/smtp/email',
+      emailDataToOwner,
+      {
+        headers: {
+          'api-key': brevoApiKey,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      },
+    )
 
-    await transporter.sendMail(mailOptionsToOwner)
-    await transporter.sendMail(mailOptionsToSender)
+    console.log('Email sent successfully:', response.data.messageId)
 
     res.status(200).json({
       success: true,
-      message: 'Email sent successfully! We will get back to you soon.',
+      message: 'Email sent successfully! I will get back to you soon.',
     })
   } catch (error) {
-    console.error('Email sending error:')
-    console.error('Error details:', {
+    console.error('Email sending error:', {
       message: error.message,
-      code: error.code,
+      response: error.response?.data,
+      status: error.response?.status,
     })
+
     res.status(500).json({
       success: false,
       message: 'Failed to send email. Please try again later.',
