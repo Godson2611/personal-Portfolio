@@ -10,8 +10,11 @@ const getTransporter = () => {
     )
   }
 
+  // Use Brevo SMTP relay (works on Render free plan)
   return nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp-relay.brevo.com',
+    port: 587,
+    secure: false,
     auth: {
       user: emailUser,
       pass: emailPassword,
@@ -89,10 +92,7 @@ export const sendEmail = async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Failed to send email. Please try again later.',
-      error:
-        process.env.NODE_ENV === 'development'
-          ? error.message
-          : undefined,
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined,
     })
   }
 }
