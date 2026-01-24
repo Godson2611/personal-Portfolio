@@ -62,12 +62,6 @@ const Skills = ({ skills }) => {
                       const hasFailedImage = failedImages.has(imageKey)
                       const imageUrl = getImageUrl(item.image)
 
-                      console.log(`Rendering ${item.name}:`, {
-                        hasImage: !!item.image,
-                        imageUrl,
-                        path: item.image,
-                      })
-
                       return (
                         <SkillItem
                           key={item._id || `${skillIndex}-${itemIndex}`}
