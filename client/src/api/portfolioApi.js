@@ -85,12 +85,16 @@ export const updateProfile = async (userData) => {
 }
 
 // Admin APIs
-export const updateBio = async (bioData) => {
+export const updateBio = async (userData) => {
   try {
-    const response = await api.put('/portfolio/bio', bioData)
+    const response = await api.put('/portfolio/bio', userData)
+    if (response.data.token) {
+      localStorage.setItem('user', JSON.stringify(response.data))
+      setAuthToken(response.data.token)
+    }
     return response.data
   } catch (error) {
-    console.error('Update bio error:', error)
+    console.error('Update bio error:', error.response?.data || error.message)
     throw error
   }
 }

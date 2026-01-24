@@ -617,7 +617,11 @@ const Dashboard = () => {
                           <small>Current image: {bio.profileImage}</small>
                           <br />
                           <img
-                            src={`${import.meta.env.VITE_API_URL}${bio.profileImage}`}
+                            src={(() => {
+                              const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+                              const baseUrl = apiUrl.replace('/api', '')
+                              return `${baseUrl}${bio.profileImage}`
+                            })()}
                             alt="Profile"
                             onError={(e) => {
                               e.target.onerror = null
@@ -756,7 +760,11 @@ const Dashboard = () => {
                       {bio?.profileImage ? (
                         <div style={{ marginTop: '10px' }}>
                           <img
-                            src={`http://localhost:5000${bio.profileImage}`}
+                            src={(() => {
+                              const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+                              const baseUrl = apiUrl.replace('/api', '')
+                              return `${baseUrl}${bio.profileImage}`
+                            })()}
                             alt="Profile"
                             onError={(e) => {
                               e.target.onerror = null
@@ -1468,7 +1476,11 @@ const Dashboard = () => {
                                   Current image: {editData.skills[i].image}
                                   <br />
                                   <img
-                                    src={`${import.meta.env.VITE_API_URL}${editData.skills[i].image}`}
+                                    src={(() => {
+                                      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+                                      const baseUrl = apiUrl.replace('/api', '')
+                                      return `${baseUrl}${editData.skills[i].image}`
+                                    })()}
                                     alt="current"
                                     onError={(e) => {
                                       e.target.onerror = null
