@@ -14,7 +14,37 @@ const getBrevoApiKey = () => {
 
 export const sendEmail = async (req, res) => {
   try {
-    const apiKey = getBrevoApiKey()
+    // Validate environment variables first
+    const apiKey = process.env.BREVO_API_KEY
+    const receiverEmail = process.env.RECEIVER_EMAIL
+    const senderEmail = process.env.EMAIL_FROM
+
+    if (!apiKey) {
+      console.error('BREVO_API_KEY is not configured')
+      return res.status(500).json({
+        success: false,
+        message: 'Server configuration error: Email service not configured',
+        error:
+          process.env.NODE_ENV === 'development'
+            ? 'Missing BREVO_API_KEY'
+            : undefined,
+      })
+    }
+
+    if (!receiverEmail || !senderEmail) {
+      console.error('Missing email configuration:', {
+        hasReceiverEmail: !!receiverEmail,
+        hasSenderEmail: !!senderEmail,
+      })
+      return res.status(500).json({
+        success: false,
+        message: 'Email configuration incomplete on server',
+        error:
+          process.env.NODE_ENV === 'development'
+            ? 'Missing RECEIVER_EMAIL or EMAIL_FROM'
+            : undefined,
+      })
+    }
 
     const { email, name, subject, message } = req.body
 
@@ -31,16 +61,6 @@ export const sendEmail = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: 'Please provide a valid email address',
-      })
-    }
-
-    const receiverEmail = process.env.RECEIVER_EMAIL
-    const senderEmail = process.env.EMAIL_FROM
-
-    if (!receiverEmail || !senderEmail) {
-      return res.status(500).json({
-        success: false,
-        message: 'Email configuration incomplete on server',
       })
     }
 
