@@ -103,13 +103,25 @@ export const sendEmail = async (req, res) => {
       message: 'Email sent successfully! We will get back to you soon.',
     })
   } catch (error) {
-    console.error('Email sending error:', error.response?.data || error.message)
+    console.error('Email sending error:')
+    console.error('Error details:', {
+      message: error.message,
+      code: error.code,
+      response: error.response?.data,
+      status: error.response?.status,
+    })
     const errorMessage =
       error.response?.data?.message || error.message || 'Failed to send email'
     res.status(500).json({
       success: false,
       message: 'Failed to send email. Please try again later.',
-      error: process.env.NODE_ENV === 'development' ? errorMessage : undefined,
+      error:
+        process.env.NODE_ENV === 'development'
+          ? {
+              message: errorMessage,
+              details: error.response?.data,
+            }
+          : undefined,
     })
   }
 }
