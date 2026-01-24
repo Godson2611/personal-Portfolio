@@ -1,29 +1,38 @@
-import nodemailer from 'nodemailer'
-
-const getTransporter = () => {
-  const emailUser = process.env.EMAIL_USER
-  const emailPassword = process.env.EMAIL_PASSWORD
-
-  if (!emailUser || !emailPassword) {
-    throw new Error(
-      `Email credentials not configured. EMAIL_USER: ${emailUser ? 'set' : 'not set'}, EMAIL_PASSWORD: ${emailPassword ? 'set' : 'not set'}`,
-    )
-  }
-
-  return nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: emailUser,
-      pass: emailPassword,
-    },
-  })
-}
+import axios from 'axios'
 
 export const sendEmail = async (req, res) => {
   try {
-    const transporter = getTransporter()
+    // Validate environment variables
+    const apiKey = process.env.BREVO_API_KEY
+    const receiverEmail = process.env.RECEIVER_EMAIL
+    const senderEmail = process.env.EMAIL_FROM
+
+    if (!apiKey) {
+      console.error('BREVO_API_KEY is not configured')
+      return res.status(500).json({
+        success: false,
+        message: 'Server configuration error: Email service not configured',
+        error:
+          process.env.NODE_ENV === 'development'
+            ? 'Missing BREVO_API_KEY'
+            : undefined,
+      })
+    }
+
+    if (!receiverEmail || !senderEmail) {
+      console.error('Missing email configuration:', {
+        hasReceiverEmail: !!receiverEmail,
+        hasSenderEmail: !!senderEmail,
+      })
+      return res.status(500).json({
+        success: false,
+        message: 'Email configuration incomplete on server',
+        error:
+          process.env.NODE_ENV === 'development'
+            ? 'Missing RECEIVER_EMAIL or EMAIL_FROM'
+            : undefined,
+      })
+    }
 
     const { email, name, subject, message } = req.body
 
@@ -43,11 +52,12 @@ export const sendEmail = async (req, res) => {
       })
     }
 
-    const mailOptionsToOwner = {
-      from: process.env.EMAIL_FROM,
-      to: process.env.RECEIVER_EMAIL,
+    // Send email to owner
+    const ownerPayload = {
+      sender: { email: senderEmail, name: 'Portfolio Contact Form' },
+      to: [{ email: receiverEmail }],
       subject: `New Contact Form Submission: ${subject}`,
-      html: `
+      htmlContent: `
                 <h2>New Message from Your Portfolio</h2>
                 <p><strong>From:</strong> ${name}</p>
                 <p><strong>Email:</strong> ${email}</p>
@@ -58,11 +68,12 @@ export const sendEmail = async (req, res) => {
             `,
     }
 
-    const mailOptionsToSender = {
-      from: process.env.EMAIL_FROM,
-      to: email,
+    // Send email to sender (confirmation)
+    const senderPayload = {
+      sender: { email: senderEmail, name: 'Portfolio Contact Form' },
+      to: [{ email }],
       subject: `Re: ${subject} - Thank you for contacting us`,
-      html: `
+      htmlContent: `
                 <h2>Thank You for Contacting Us!</h2>
                 <p>Hi ${name},</p>
                 <p>We have received your message and will get back to you as soon as possible.</p>
@@ -75,20 +86,30 @@ export const sendEmail = async (req, res) => {
             `,
     }
 
-    await transporter.sendMail(mailOptionsToOwner)
+    const brevoApi = axios.create({
+      baseURL: 'https://api.brevo.com/v3',
+      headers: {
+        'api-key': apiKey,
+        'Content-Type': 'application/json',
+      },
+    })
 
-    await transporter.sendMail(mailOptionsToSender)
+    // Send both emails
+    await brevoApi.post('/smtp/email', ownerPayload)
+    await brevoApi.post('/smtp/email', senderPayload)
 
     res.status(200).json({
       success: true,
       message: 'Email sent successfully! We will get back to you soon.',
     })
   } catch (error) {
-    console.error('Email sending error:', error)
+    console.error('Email sending error:', error.response?.data || error.message)
+    const errorMessage =
+      error.response?.data?.message || error.message || 'Failed to send email'
     res.status(500).json({
       success: false,
       message: 'Failed to send email. Please try again later.',
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined,
+      error: process.env.NODE_ENV === 'development' ? errorMessage : undefined,
     })
   }
 }
