@@ -21,8 +21,6 @@ const Skills = ({ skills }) => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return ''
 
-    console.log('Image path from DB:', imagePath)
-
     if (imagePath.startsWith('http')) {
       return imagePath
     }
