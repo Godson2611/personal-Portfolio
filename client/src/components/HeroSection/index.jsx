@@ -16,6 +16,23 @@ import {
 } from './HeroStyle'
 
 const HeroSection = ({ bio }) => {
+  const getProfileImageUrl = (imagePath) => {
+    if (!imagePath) return HeroImg
+
+    if (imagePath.startsWith('http')) {
+      return imagePath
+    }
+
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+    const baseUrl = apiUrl.replace('/api', '')
+
+    if (imagePath.startsWith('/uploads')) {
+      return `${baseUrl}${imagePath}`
+    }
+
+    return `${baseUrl}/uploads/${imagePath}`
+  }
+
   return (
     <div id="about">
       <HeroContainer>
@@ -48,11 +65,7 @@ const HeroSection = ({ bio }) => {
           </HeroLeftContainer>
           <HeroRightContainer id="Right">
             <Img
-              src={
-                bio?.profileImage
-                  ? `http://localhost:5000${bio.profileImage}`
-                  : HeroImg
-              }
+              src={getProfileImageUrl(bio?.profileImage)}
               alt="profile"
               onError={(e) => {
                 e.target.onerror = null

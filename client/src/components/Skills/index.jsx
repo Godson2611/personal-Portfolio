@@ -27,7 +27,8 @@ const Skills = ({ skills }) => {
       return imagePath
     }
 
-    const baseUrl = 'http://localhost:5000'
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+    const baseUrl = apiUrl.replace('/api', '')
 
     if (imagePath.startsWith('/uploads')) {
       return `${baseUrl}${imagePath}`
