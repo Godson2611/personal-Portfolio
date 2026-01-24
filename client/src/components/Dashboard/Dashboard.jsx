@@ -618,7 +618,9 @@ const Dashboard = () => {
                           <br />
                           <img
                             src={(() => {
-                              const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+                              const apiUrl =
+                                import.meta.env.VITE_API_URL ||
+                                'http://localhost:5000/api'
                               const baseUrl = apiUrl.replace('/api', '')
                               return `${baseUrl}${bio.profileImage}`
                             })()}
@@ -761,7 +763,9 @@ const Dashboard = () => {
                         <div style={{ marginTop: '10px' }}>
                           <img
                             src={(() => {
-                              const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+                              const apiUrl =
+                                import.meta.env.VITE_API_URL ||
+                                'http://localhost:5000/api'
                               const baseUrl = apiUrl.replace('/api', '')
                               return `${baseUrl}${bio.profileImage}`
                             })()}
@@ -1477,7 +1481,9 @@ const Dashboard = () => {
                                   <br />
                                   <img
                                     src={(() => {
-                                      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+                                      const apiUrl =
+                                        import.meta.env.VITE_API_URL ||
+                                        'http://localhost:5000/api'
                                       const baseUrl = apiUrl.replace('/api', '')
                                       return `${baseUrl}${editData.skills[i].image}`
                                     })()}
